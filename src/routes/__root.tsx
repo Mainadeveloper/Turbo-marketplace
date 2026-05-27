@@ -86,6 +86,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "BoostFlow Turbos" },
+      { name: "description", content: "Turbo Thrill Hub is an e-commerce marketplace for turbo products." },
+      { property: "og:description", content: "Turbo Thrill Hub is an e-commerce marketplace for turbo products." },
+      { name: "twitter:description", content: "Turbo Thrill Hub is an e-commerce marketplace for turbo products." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e02b3664-43a4-4a71-80d3-e4973a1a5fc5/id-preview-34de3da7--438cb5af-0696-400f-a816-b9f53aa8c2c6.lovable.app-1779891552361.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e02b3664-43a4-4a71-80d3-e4973a1a5fc5/id-preview-34de3da7--438cb5af-0696-400f-a816-b9f53aa8c2c6.lovable.app-1779891552361.png" },
     ],
     links: [
       {
