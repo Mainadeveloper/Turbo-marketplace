@@ -17,12 +17,12 @@ function NotFoundComponent() {
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110"
           >
             Go home
           </Link>
@@ -40,7 +40,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          This page didn&apos;t load
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Something went wrong on our end. You can try refreshing or head back home.
@@ -51,7 +51,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110"
           >
             Try again
           </button>
@@ -75,28 +75,39 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "BoostFlow Turbos" },
       {
         name: "description",
-        content: "Turbo marketplace starter showcasing Navara, JCB, DMAX and tractor turbo products.",
+        content: "Turbocharger marketplace with real product photos and direct customer enquiries.",
       },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "BoostFlow Turbos" },
-      {
-        property: "og:description",
-        content: "Turbo marketplace starter showcasing real turbo products with direct contact links.",
-      },
+      { property: "og:site_name", content: "BoostFlow Turbos" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "BoostFlow Turbos" },
-      { name: "description", content: "Turbo Thrill Hub is an e-commerce marketplace for turbo products." },
-      { property: "og:description", content: "Turbo Thrill Hub is an e-commerce marketplace for turbo products." },
-      { name: "twitter:description", content: "Turbo Thrill Hub is an e-commerce marketplace for turbo products." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e02b3664-43a4-4a71-80d3-e4973a1a5fc5/id-preview-34de3da7--438cb5af-0696-400f-a816-b9f53aa8c2c6.lovable.app-1779891552361.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e02b3664-43a4-4a71-80d3-e4973a1a5fc5/id-preview-34de3da7--438cb5af-0696-400f-a816-b9f53aa8c2c6.lovable.app-1779891552361.png" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "BoostFlow Turbos",
+          url: "https://boost-barn-market.lovable.app",
+          email: "sales@boostflowturbos.com",
+          telephone: "+000123456789",
+        }),
       },
     ],
   }),
@@ -125,7 +136,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
   );
