@@ -1,101 +1,163 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, Gauge, Mail, Phone, ShieldCheck, Truck } from "lucide-react";
+import {
+  BadgeCheck,
+  CarFront,
+  ChevronRight,
+  CircleHelp,
+  Gauge,
+  Mail,
+  Menu,
+  Phone,
+  Search,
+  ShieldCheck,
+  Wrench,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import navaraTurbo from "@/assets/turbo-navara.jpg";
-import jcbTurboFront from "@/assets/turbo-jcb-front.jpg";
-import jcbTurboSide from "@/assets/turbo-jcb-side.jpg";
-import dmaxTurbo from "@/assets/turbo-dmax.jpg";
-import tractorTurbo from "@/assets/turbo-tractor.jpg";
+import ct26LandcruiserCartridge from "@/assets/ct26-landcruiser-cartridge.png.asset.json";
+import turbo1kdFront from "@/assets/1kd-complete-turbo-front.png.asset.json";
+import turbo1kdSide from "@/assets/1kd-complete-turbo-side.png.asset.json";
+import fordRanger22Cartridge from "@/assets/ford-ranger-22-cartridge.png.asset.json";
+import turbo22Complete5Speed from "@/assets/turbo-22-complete-5-speed.png.asset.json";
+import fordRanger22CompleteTurbo from "@/assets/ford-ranger-22-complete-turbo.png.asset.json";
 
 const products = [
   {
-    name: "NV-350 Navara Turbo",
-    vehicle: "Nissan pickup fitment",
-    image: navaraTurbo,
-    alt: "NV-350 Navara turbo photographed from the compressor side",
+    name: "CT26 Landcruiser Cartridge",
+    fitment: "Toyota Landcruiser",
+    image: ct26LandcruiserCartridge.url,
+    alt: "CT26 Landcruiser turbo cartridge photographed upright in packaging",
     summary:
-      "A practical turbo option for Navara owners who need strong pull, clean acceleration, and reliable daily-use performance.",
-    highlight: "Balanced for work pickups and general road use.",
+      "A replacement cartridge option for CT26 Landcruiser turbo setups, suitable when the center rotating assembly needs a fresh, dependable core.",
+    badge: "Cartridge",
   },
   {
-    name: "JCB Tractor Turbo",
-    vehicle: "JCB machine fitment",
-    image: jcbTurboFront,
-    alt: "JCB tractor turbo shown from the turbine housing opening",
+    name: "1KD Complete Turbo Charger",
+    fitment: "Toyota 1KD engine",
+    image: turbo1kdFront.url,
+    alt: "Front view of a 1KD complete turbo charger with visible compressor wheel",
     summary:
-      "Built for machines that need dependable boost under load, helping support productivity on farm and site work.",
-    highlight: "Designed for heavy-duty torque delivery.",
+      "A full 1KD turbo unit for customers looking for a more complete replacement instead of changing only the internal cartridge.",
+    badge: "Complete unit",
   },
   {
-    name: "DMAX Turbo",
-    vehicle: "Isuzu DMAX fitment",
-    image: dmaxTurbo,
-    alt: "DMAX turbo with polished compressor housing and actuator visible",
+    name: "1KD Complete Turbo Charger",
+    fitment: "Toyota 1KD engine",
+    image: turbo1kdSide.url,
+    alt: "Side view of a 1KD complete turbo charger with actuator housing visible",
     summary:
-      "A sharp-looking DMAX turbo setup for drivers who want responsive performance and a clean engine-bay presentation.",
-    highlight: "Great for pickups that need fast response and steady airflow.",
+      "A second product angle that helps buyers clearly inspect the build, housing, and actuator side before making an enquiry.",
+    badge: "Alternate view",
   },
   {
-    name: "Tractor Turbo",
-    vehicle: "General tractor fitment",
-    image: tractorTurbo,
-    alt: "Heavy tractor turbo housing shown from the side with red protective cover",
+    name: "2.2 Ford Ranger Turbo Charger Cartridge",
+    fitment: "Ford Ranger 2.2",
+    image: fordRanger22Cartridge.url,
+    alt: "2.2 Ford Ranger turbo charger cartridge shown on white foam packaging",
     summary:
-      "A larger tractor-focused turbo option suited for demanding agricultural use and long working hours.",
-    highlight: "Made for hardworking engines in tough environments.",
+      "A cartridge-focused solution for Ford Ranger 2.2 applications when the main turbo housing can be reused and only the core needs replacement.",
+    badge: "Cartridge",
+  },
+  {
+    name: "2.2 Turbocharger Complete 5 Speed",
+    fitment: "Ford Ranger 2.2 5-speed",
+    image: turbo22Complete5Speed.url,
+    alt: "2.2 turbocharger complete 5 speed unit photographed from the front",
+    summary:
+      "A full turbocharger setup intended for 2.2 5-speed applications, giving customers a more complete replacement option.",
+    badge: "Complete unit",
+  },
+  {
+    name: "2.2 Ford Ranger Complete Turbo Charger",
+    fitment: "Ford Ranger 2.2",
+    image: fordRanger22CompleteTurbo.url,
+    alt: "2.2 Ford Ranger complete turbo charger photographed from the side",
+    summary:
+      "A complete Ford Ranger 2.2 turbocharger designed for customers who want a direct, ready-to-fit turbo assembly solution.",
+    badge: "Ford Ranger",
   },
 ] as const;
 
-const sellingPoints = [
+const quickLinks = [
+  "Landcruiser turbo cartridge",
+  "1KD complete turbo",
+  "Ford Ranger 2.2 cartridge",
+  "Complete turbo units",
+] as const;
+
+const whyBuyHere = [
   {
-    title: "Simple fitment guidance",
-    description: "Customers can message for compatibility help before ordering.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Strong visual product display",
-    description: "Real product photos keep the store trustworthy and easy to browse.",
+    title: "Real product photos",
+    description: "Customers can inspect the exact turbo items being advertised before contacting you.",
     icon: BadgeCheck,
   },
   {
-    title: "Ready for customer enquiries",
-    description: "Email and social contacts make it easy to request pricing and details.",
-    icon: Truck,
+    title: "Fitment-focused help",
+    description: "You can guide buyers on the right turbo choice for their vehicle or engine application.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Fast direct enquiries",
+    description: "Shoppers can request price, stock, and compatibility details by email or phone.",
+    icon: Phone,
   },
 ] as const;
 
-const contactLinks = [
-  { label: "Email", value: "sales@boostflowturbos.com", href: "mailto:sales@boostflowturbos.com" },
-  { label: "Instagram", value: "@boostflowturbos", href: "https://instagram.com/boostflowturbos" },
-  { label: "Facebook", value: "BoostFlow Turbos", href: "https://facebook.com/boostflowturbos" },
-  { label: "TikTok", value: "@boostflowturbos", href: "https://tiktok.com/@boostflowturbos" },
+const turboInfo = [
+  {
+    title: "What a turbo does",
+    text: "A turbocharger pushes more air into the engine so the vehicle can produce better power and pull efficiently under load.",
+  },
+  {
+    title: "Cartridge vs complete turbo",
+    text: "A cartridge replaces the main internal rotating core, while a complete turbo includes the assembled housing and related components.",
+  },
+  {
+    title: "Why fitment matters",
+    text: "Turbo parts must match the engine and vehicle setup correctly, so customers should always confirm details before buying.",
+  },
 ] as const;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "BoostFlow Turbos | Turbo Marketplace" },
+      { title: "BoostFlow Turbos | Turbocharger Parts & Units" },
       {
         name: "description",
         content:
-          "Browse turbo products for Navara, JCB, DMAX and tractor applications with direct contact options for fitment and pricing.",
+          "Shop turbocharger cartridges and complete turbo units for Landcruiser, 1KD and Ford Ranger 2.2 applications with direct enquiry options.",
       },
-      { property: "og:title", content: "BoostFlow Turbos | Turbo Marketplace" },
+      { property: "og:title", content: "BoostFlow Turbos | Turbocharger Parts & Units" },
       {
         property: "og:description",
         content:
-          "Simple turbo marketplace homepage with featured turbo products, strong visuals and direct contact details.",
+          "Customer-friendly turbo website with real product photos, simple explanations, and direct contact for pricing and fitment.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:title", content: "BoostFlow Turbos | Turbo Marketplace" },
+      { property: "og:url", content: "https://boost-barn-market.lovable.app/" },
+      { property: "og:image", content: turbo1kdFront.url },
+      { name: "twitter:title", content: "BoostFlow Turbos | Turbocharger Parts & Units" },
       {
         name: "twitter:description",
         content:
-          "Turbo products for Navara, JCB, DMAX and tractors, displayed in a clean and customer-friendly storefront.",
+          "Browse turbocharger cartridges and complete turbo units with real product images and contact-first buying flow.",
+      },
+      { name: "twitter:image", content: turbo1kdFront.url },
+    ],
+    links: [{ rel: "canonical", href: "https://boost-barn-market.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "BoostFlow Turbos",
+          url: "https://boost-barn-market.lovable.app/",
+          description:
+            "Turbocharger parts and complete turbo units for Landcruiser, 1KD and Ford Ranger applications.",
+        }),
       },
     ],
-    links: [{ rel: "canonical", href: "https://id-preview--438cb5af-0696-400f-a816-b9f53aa8c2c6.lovable.app/" }],
   }),
   component: Index,
 });
@@ -103,163 +165,208 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <section className="border-b border-border/70">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-6 sm:px-6 lg:px-8">
-          <header className="flex flex-col gap-4 rounded-lg border border-border/70 bg-card/80 p-4 shadow-[var(--shadow-soft)] backdrop-blur sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+      <header className="sticky top-0 z-20 border-b border-border bg-card/95 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-[1220px] items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border bg-background text-foreground"
+            aria-label="Open menu"
+          >
+            <Menu className="size-5" />
+          </button>
+
+          <div className="min-w-0 flex-1 lg:flex lg:items-center lg:gap-6">
+            <div className="min-w-[180px]">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                 BoostFlow Turbos
               </p>
-              <h1 className="mt-2 max-w-2xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                Turbo power for pickups, tractors and hard-working machines.
-              </h1>
+              <p className="text-sm text-muted-foreground">Turbocharger marketplace</p>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" variant="hero">
-                <a href="mailto:sales@boostflowturbos.com">
-                  Ask for pricing
-                  <ArrowRight />
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="surface">
-                <a href="#products">View turbos</a>
-              </Button>
+
+            <div className="mt-3 hidden flex-1 lg:mt-0 lg:block">
+              <div className="flex h-12 items-center gap-3 rounded-md border border-border bg-background px-4 shadow-[var(--shadow-soft)]">
+                <Search className="size-5 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">
+                  Search turbo parts, cartridges and complete units
+                </span>
+              </div>
             </div>
-          </header>
+          </div>
 
-          <div className="grid items-stretch gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-            <article className="overflow-hidden rounded-lg border border-border/70 bg-card shadow-[var(--shadow-soft)]">
-              <div className="grid gap-0 md:grid-cols-[1.15fr_0.85fr]">
-                <div className="flex flex-col justify-between gap-6 p-6 sm:p-8">
-                  <div className="space-y-4">
-                    <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border/80 bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
-                      <Gauge className="size-4" />
-                      Simple turbo marketplace starter
-                    </div>
-                    <p className="max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
-                      You are selling turbo products for different vehicles and machines, so this first version keeps things simple: clear product photos, short explanations, and direct contact links for customers who need more details.
-                    </p>
-                  </div>
+          <div className="hidden items-center gap-5 lg:flex">
+            <a href="#products" className="text-sm font-medium text-foreground hover:text-primary">
+              Products
+            </a>
+            <a href="#learn" className="text-sm font-medium text-foreground hover:text-primary">
+              Turbo info
+            </a>
+            <a href="#contact" className="text-sm font-medium text-foreground hover:text-primary">
+              Contact
+            </a>
+          </div>
+        </div>
+      </header>
 
-                  <div className="grid gap-3 sm:grid-cols-3">
-                    {sellingPoints.map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <div
-                          key={item.title}
-                          className="rounded-lg border border-border/70 bg-background p-4"
-                        >
-                          <Icon className="size-5 text-primary" />
-                          <h2 className="mt-3 text-sm font-semibold text-foreground">{item.title}</h2>
-                          <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                            {item.description}
-                          </p>
-                        </div>
-                      );
-                    })}
-                  </div>
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto w-full max-w-[1220px] px-4 py-4 sm:px-6 lg:px-8">
+          <div className="rounded-md border-t-4 border-primary bg-accent px-5 py-6 sm:px-8">
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex items-start gap-4">
+                <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-md bg-background text-foreground shadow-[var(--shadow-soft)]">
+                  <CarFront className="size-7" />
                 </div>
-
-                <div className="relative min-h-[320px] overflow-hidden border-t border-border/70 bg-secondary/60 md:min-h-full md:border-t-0 md:border-l">
-                  <img
-                    src={dmaxTurbo}
-                    alt="DMAX turbo hero image"
-                    className="h-full w-full object-cover"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-background via-background/65 to-transparent p-5">
-                    <p className="text-sm font-medium text-foreground">Catchy theme:</p>
-                    <p className="mt-1 text-lg font-semibold text-foreground">
-                      Built to boost. Ready to move.
-                    </p>
-                  </div>
+                <div>
+                  <p className="font-display text-3xl font-extrabold uppercase tracking-tight text-foreground sm:text-4xl">
+                    Find the right turbo for your vehicle
+                  </p>
+                  <p className="mt-2 max-w-2xl text-base text-foreground/80">
+                    Browse cartridges and complete turbochargers, then contact us for fitment, pricing and stock confirmation.
+                  </p>
                 </div>
               </div>
-            </article>
 
-            <aside className="rounded-lg border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] sm:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                Contact anytime
-              </p>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
-                Need fitment, price or stock details?
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                Customers can reach out for application checks, ordering details and availability.
-              </p>
-
-              <div className="mt-6 space-y-3">
-                {contactLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="flex items-center justify-between rounded-lg border border-border/70 bg-background px-4 py-3 transition-colors hover:bg-accent"
-                  >
-                    <span>
-                      <span className="block text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                        {link.label}
-                      </span>
-                      <span className="mt-1 block text-sm font-medium text-foreground">{link.value}</span>
-                    </span>
-                    <ArrowRight className="size-4 text-primary" />
-                  </a>
-                ))}
+              <div className="flex flex-wrap gap-3">
+                <Button asChild size="lg" variant="surface">
+                  <a href="#products">View products</a>
+                </Button>
+                <Button asChild size="lg" variant="hero">
+                  <a href="mailto:sales@boostflowturbos.com?subject=Turbo%20Enquiry">Ask for details</a>
+                </Button>
               </div>
-
-              <div className="mt-6 rounded-lg border border-dashed border-border/80 bg-secondary/50 p-4">
-                <div className="flex items-center gap-3 text-sm text-secondary-foreground">
-                  <Mail className="size-4 text-primary" />
-                  sales@boostflowturbos.com
-                </div>
-                <div className="mt-3 flex items-center gap-3 text-sm text-secondary-foreground">
-                  <Phone className="size-4 text-primary" />
-                  +000 123 456 789
-                </div>
-              </div>
-            </aside>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="products" className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <section className="mx-auto w-full max-w-[1220px] px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              Featured turbos
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              Turbocharger parts & complete units
             </p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              The different turbo products you are currently showing.
-            </h2>
-          </div>
-          <p className="max-w-xl text-sm leading-6 text-muted-foreground sm:text-right">
-            Each product is explained simply so a customer quickly understands what it is for before contacting you.
-          </p>
-        </div>
+            <h1 className="mt-3 max-w-4xl text-4xl font-extrabold uppercase leading-none text-foreground sm:text-5xl lg:text-[4.25rem]">
+              Reliable turbo products made easy for customers to understand.
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
+              This website is built like a realistic turbo parts storefront: simple browsing, real product photos, clear explanations, and direct contact for customers who need the correct turbocharger for their engine or vehicle.
+            </p>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {products.map((product) => (
-            <article
-              key={product.name}
-              className="overflow-hidden rounded-lg border border-border/70 bg-card shadow-[var(--shadow-soft)]"
-            >
-              <div className="aspect-[4/4.6] overflow-hidden bg-secondary/70">
+            <div className="mt-6 flex flex-wrap gap-3">
+              {quickLinks.map((item) => (
+                <a
+                  key={item}
+                  href="#products"
+                  className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                >
+                  {item}
+                  <ChevronRight className="size-4 text-primary" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <article className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)] sm:col-span-2">
+              <div className="aspect-[16/9] overflow-hidden bg-secondary">
                 <img
-                  src={product.image}
-                  alt={product.alt}
-                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.03]"
+                  src={turbo1kdFront.url}
+                  alt="Featured 1KD complete turbo charger"
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                />
+              </div>
+              <div className="border-t border-border p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                  Featured product
+                </p>
+                <h2 className="mt-2 text-2xl font-bold text-foreground">1KD Complete Turbo Charger</h2>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  One of the most visually complete units on the page, shown clearly so customers can inspect the compressor side before they enquire.
+                </p>
+              </div>
+            </article>
+
+            <article className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)]">
+              <div className="aspect-[4/4.3] overflow-hidden bg-secondary">
+                <img
+                  src={ct26LandcruiserCartridge.url}
+                  alt="CT26 Landcruiser cartridge close view"
+                  className="h-full w-full object-cover"
                   loading="lazy"
                 />
               </div>
-              <div className="space-y-3 p-5">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-                    {product.vehicle}
-                  </p>
-                  <h3 className="mt-2 text-xl font-semibold text-foreground">{product.name}</h3>
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-foreground">CT26 Cartridge</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">Landcruiser cartridge option.</p>
+              </div>
+            </article>
+
+            <article className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)]">
+              <div className="aspect-[4/4.3] overflow-hidden bg-secondary">
+                <img
+                  src={fordRanger22CompleteTurbo.url}
+                  alt="Ford Ranger 2.2 complete turbo charger side view"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-foreground">Ford Ranger 2.2</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">Complete turbo charger unit.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="products" className="mx-auto w-full max-w-[1220px] px-4 py-6 sm:px-6 lg:px-8">
+        <div className="section-heading-accent" />
+        <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              Most popular turbo products
+            </p>
+            <h2 className="mt-2 text-4xl font-extrabold uppercase text-foreground sm:text-5xl">
+              Shop by product view
+            </h2>
+          </div>
+          <p className="max-w-xl text-sm leading-6 text-muted-foreground sm:text-right">
+            Customers can browse the photos first, understand whether each listing is a cartridge or a complete turbo, and then contact you for the next step.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {products.map((product) => (
+            <article
+              key={`${product.name}-${product.image}`}
+              className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)] transition-transform duration-200 hover:-translate-y-1"
+            >
+              <div className="aspect-[4/3.25] overflow-hidden bg-secondary">
+                <img
+                  src={product.image}
+                  alt={product.alt}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="space-y-4 p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="inline-flex rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                    {product.badge}
+                  </span>
+                  <span className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+                    {product.fitment}
+                  </span>
                 </div>
-                <p className="text-sm leading-6 text-muted-foreground">{product.summary}</p>
-                <div className="rounded-md border border-border/70 bg-background px-3 py-2 text-sm font-medium text-foreground">
-                  {product.highlight}
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground">{product.name}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{product.summary}</p>
+                </div>
+                <div className="flex items-center justify-between gap-3 rounded-md border border-border bg-background px-4 py-3">
+                  <span className="text-sm font-medium text-foreground">Enquire for price & fitment</span>
+                  <a href="#contact" className="text-sm font-semibold text-primary">
+                    Contact now
+                  </a>
                 </div>
               </div>
             </article>
@@ -267,67 +374,143 @@ function Index() {
         </div>
       </section>
 
-      <section className="border-y border-border/70 bg-card/60">
-        <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-          <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              JCB close look
-            </p>
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              Two views of the JCB tractor turbo help customers see the build quality.
-            </h2>
-            <p className="text-sm leading-7 text-muted-foreground sm:text-base">
-              The front angle shows the inner housing and wheel area, while the second angle helps show the external form and hardware. This makes the image set feel more website-friendly and more trustworthy than a single product shot.
-            </p>
-            <Button asChild variant="hero" size="lg">
-              <a href="mailto:sales@boostflowturbos.com?subject=Turbo%20Enquiry">Request more details</a>
-            </Button>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            <figure className="overflow-hidden rounded-lg border border-border/70 bg-background shadow-[var(--shadow-soft)]">
-              <img
-                src={jcbTurboFront}
-                alt="Front view of a JCB tractor turbo"
-                className="aspect-[4/5] h-full w-full object-cover"
-                loading="lazy"
-              />
-            </figure>
-            <figure className="overflow-hidden rounded-lg border border-border/70 bg-background shadow-[var(--shadow-soft)]">
-              <img
-                src={jcbTurboSide}
-                alt="Side view of a JCB tractor turbo"
-                className="aspect-[4/5] h-full w-full object-cover"
-                loading="lazy"
-              />
-            </figure>
+      <section className="border-y border-border bg-card/70">
+        <div className="mx-auto w-full max-w-[1220px] px-4 py-14 sm:px-6 lg:px-8">
+          <div className="grid gap-5 md:grid-cols-3">
+            {whyBuyHere.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article key={item.title} className="rounded-md border border-border bg-background p-5 shadow-[var(--shadow-soft)]">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-accent text-foreground">
+                    <Icon className="size-5" />
+                  </div>
+                  <h2 className="mt-4 text-xl font-bold text-foreground">{item.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-border/70 bg-card p-6 shadow-[var(--shadow-soft)] sm:p-10">
-          <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                Good starting website
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                A clean first version you can grow into a full turbo store.
+      <section id="learn" className="mx-auto w-full max-w-[1220px] px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">About turbochargers</p>
+            <h2 className="mt-3 text-4xl font-extrabold uppercase text-foreground sm:text-5xl">
+              Simple turbo information for everyday buyers.
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">
+              Many customers know they need a turbo part, but they may not know whether they need a cartridge or a complete turbocharger. This section helps make the website feel realistic, useful and trustworthy.
+            </p>
+          </div>
+
+          <div className="grid gap-4">
+            {turboInfo.map((item) => (
+              <article key={item.title} className="rounded-md border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
+                <div className="flex items-start gap-4">
+                  <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-accent">
+                    <CircleHelp className="size-5 text-foreground" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-foreground">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-secondary/70">
+        <div className="mx-auto w-full max-w-[1220px] px-4 py-16 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div className="space-y-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Turbo gallery</p>
+              <h2 className="text-4xl font-extrabold uppercase text-foreground sm:text-5xl">
+                Multiple angles make the site easier for customers to trust.
               </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
-                This starter homepage already gives you a strong base: a catchy theme, your real products, simple explanations, and quick customer contact options. You can later expand it with prices, categories, stock, a cart, checkout and more pages.
+              <p className="max-w-xl text-base leading-7 text-muted-foreground">
+                Showing different product angles helps buyers understand the housing, actuator, wheel side and overall build quality before they send an enquiry.
               </p>
+              <div className="flex flex-wrap gap-3">
+                <div className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-3 text-sm font-medium text-foreground">
+                  <Gauge className="size-4 text-primary" />
+                  Better visual confidence
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-3 text-sm font-medium text-foreground">
+                  <Wrench className="size-4 text-primary" />
+                  Easier fitment conversation
+                </div>
+              </div>
             </div>
 
-            <div className="rounded-lg border border-border/70 bg-background p-5">
-              <p className="text-sm font-semibold text-foreground">What this version includes</p>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
-                <li>• Attractive homepage with your uploaded turbo photos</li>
-                <li>• Simple product explanations for each turbo type</li>
-                <li>• Dummy social links and email call-to-action</li>
-                <li>• Clean codebase you can keep building on</li>
-              </ul>
+            <div className="grid gap-5 md:grid-cols-2">
+              <figure className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)]">
+                <img
+                  src={turbo1kdSide.url}
+                  alt="Side angle of 1KD complete turbo charger"
+                  className="aspect-[4/5] h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </figure>
+              <figure className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)]">
+                <img
+                  src={turbo22Complete5Speed.url}
+                  alt="2.2 turbocharger complete 5 speed front angle"
+                  className="aspect-[4/5] h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="mx-auto w-full max-w-[1220px] px-4 py-16 sm:px-6 lg:px-8">
+        <div className="rounded-md border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:p-8 lg:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Contact for ordering</p>
+              <h2 className="mt-3 text-4xl font-extrabold uppercase text-foreground sm:text-5xl">
+                Need price, stock or fitment help?
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
+                Because this is a contact-first turbo website, customers can simply choose the product they want and then reach out for the final details before buying.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button asChild size="lg" variant="hero">
+                  <a href="mailto:sales@boostflowturbos.com?subject=Turbo%20Price%20Request">
+                    Email for pricing
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="surface">
+                  <a href="tel:+000123456789">Call now</a>
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <a href="mailto:sales@boostflowturbos.com" className="rounded-md border border-border bg-background p-5 transition-colors hover:bg-accent">
+                <Mail className="size-5 text-primary" />
+                <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Email</p>
+                <p className="mt-2 text-base font-semibold text-foreground">sales@boostflowturbos.com</p>
+              </a>
+              <a href="tel:+000123456789" className="rounded-md border border-border bg-background p-5 transition-colors hover:bg-accent">
+                <Phone className="size-5 text-primary" />
+                <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Phone</p>
+                <p className="mt-2 text-base font-semibold text-foreground">+000 123 456 789</p>
+              </a>
+              <a href="https://instagram.com/boostflowturbos" className="rounded-md border border-border bg-background p-5 transition-colors hover:bg-accent">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Instagram</p>
+                <p className="mt-2 text-base font-semibold text-foreground">@boostflowturbos</p>
+              </a>
+              <a href="https://facebook.com/boostflowturbos" className="rounded-md border border-border bg-background p-5 transition-colors hover:bg-accent">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Facebook</p>
+                <p className="mt-2 text-base font-semibold text-foreground">BoostFlow Turbos</p>
+              </a>
             </div>
           </div>
         </div>
