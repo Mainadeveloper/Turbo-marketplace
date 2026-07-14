@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { ReactElement } from "react";
 import {
   BadgeCheck,
   CarFront,
@@ -14,18 +15,18 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import ct26LandcruiserCartridge from "@/assets/ct26-landcruiser-cartridge.png.asset.json";
-import turbo1kdFront from "@/assets/1kd-complete-turbo-front.png.asset.json";
-import turbo1kdSide from "@/assets/1kd-complete-turbo-side.png.asset.json";
-import fordRanger22Cartridge from "@/assets/ford-ranger-22-cartridge.png.asset.json";
-import turbo22Complete5Speed from "@/assets/turbo-22-complete-5-speed.png.asset.json";
-import fordRanger22CompleteTurbo from "@/assets/ford-ranger-22-complete-turbo.png.asset.json";
+import ct26LandcruiserCartridge from "@/assets/ct26-landcruiser-cartridge.jpeg";
+import turbo1kdFront from "@/assets/1kd-complete-turbo-front.jpeg";
+import turbo1kdSide from "@/assets/1kd-complete-turbo-side.jpeg";
+import fordRanger22Cartridge from "@/assets/ford-ranger-22-cartridge.jpeg";
+import turbo22Complete5Speed from "@/assets/turbo-22-complete-5-speed.jpeg";
+import fordRanger22CompleteTurbo from "@/assets/ford-ranger-22-complete-turbo.jpg";
 
 const products = [
   {
     name: "CT26 Landcruiser Cartridge",
     fitment: "Toyota Landcruiser",
-    image: ct26LandcruiserCartridge.url,
+    image: ct26LandcruiserCartridge,
     alt: "CT26 Landcruiser turbo cartridge photographed upright in packaging",
     summary:
       "A replacement cartridge option for CT26 Landcruiser turbo setups, suitable when the center rotating assembly needs a fresh, dependable core.",
@@ -34,7 +35,7 @@ const products = [
   {
     name: "1KD Complete Turbo Charger",
     fitment: "Toyota 1KD engine",
-    image: turbo1kdFront.url,
+    image: turbo1kdFront,
     alt: "Front view of a 1KD complete turbo charger with visible compressor wheel",
     summary:
       "A full 1KD turbo unit for customers looking for a more complete replacement instead of changing only the internal cartridge.",
@@ -43,7 +44,7 @@ const products = [
   {
     name: "1KD Complete Turbo Charger",
     fitment: "Toyota 1KD engine",
-    image: turbo1kdSide.url,
+    image: turbo1kdSide,
     alt: "Side view of a 1KD complete turbo charger with actuator housing visible",
     summary:
       "A second product angle that helps buyers clearly inspect the build, housing, and actuator side before making an enquiry.",
@@ -52,7 +53,7 @@ const products = [
   {
     name: "2.2 Ford Ranger Turbo Charger Cartridge",
     fitment: "Ford Ranger 2.2",
-    image: fordRanger22Cartridge.url,
+    image: fordRanger22Cartridge,
     alt: "2.2 Ford Ranger turbo charger cartridge shown on white foam packaging",
     summary:
       "A cartridge-focused solution for Ford Ranger 2.2 applications when the main turbo housing can be reused and only the core needs replacement.",
@@ -61,7 +62,7 @@ const products = [
   {
     name: "2.2 Turbocharger Complete 5 Speed",
     fitment: "Ford Ranger 2.2 5-speed",
-    image: turbo22Complete5Speed.url,
+    image: turbo22Complete5Speed,
     alt: "2.2 turbocharger complete 5 speed unit photographed from the front",
     summary:
       "A full turbocharger setup intended for 2.2 5-speed applications, giving customers a more complete replacement option.",
@@ -70,7 +71,7 @@ const products = [
   {
     name: "2.2 Ford Ranger Complete Turbo Charger",
     fitment: "Ford Ranger 2.2",
-    image: fordRanger22CompleteTurbo.url,
+    image: fordRanger22CompleteTurbo,
     alt: "2.2 Ford Ranger complete turbo charger photographed from the side",
     summary:
       "A complete Ford Ranger 2.2 turbocharger designed for customers who want a direct, ready-to-fit turbo assembly solution.",
@@ -85,23 +86,7 @@ const quickLinks = [
   "Complete turbo units",
 ] as const;
 
-const whyBuyHere = [
-  {
-    title: "Real product photos",
-    description: "Customers can inspect the exact turbo items being advertised before contacting you.",
-    icon: BadgeCheck,
-  },
-  {
-    title: "Fitment-focused help",
-    description: "You can guide buyers on the right turbo choice for their vehicle or engine application.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Fast direct enquiries",
-    description: "Shoppers can request price, stock, and compatibility details by email or phone.",
-    icon: Phone,
-  },
-] as const;
+const whyBuyHere: { icon?: (props: any) => ReactElement; title: string; description: string }[] = [];
 
 const turboInfo = [
   {
@@ -135,14 +120,14 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://boost-barn-market.lovable.app/" },
-      { property: "og:image", content: turbo1kdFront.url },
+      { property: "og:image", content: turbo1kdFront },
       { name: "twitter:title", content: "BoostFlow Turbos | Turbocharger Parts & Units" },
       {
         name: "twitter:description",
         content:
           "Browse turbocharger cartridges and complete turbo units with real product images and contact-first buying flow.",
       },
-      { name: "twitter:image", content: turbo1kdFront.url },
+      { name: "twitter:image", content: turbo1kdFront },
     ],
     links: [{ rel: "canonical", href: "https://boost-barn-market.lovable.app/" }],
     scripts: [
@@ -229,9 +214,6 @@ function Index() {
                 <Button asChild size="lg" variant="surface">
                   <a href="#products">View products</a>
                 </Button>
-                <Button asChild size="lg" variant="hero">
-                  <a href="mailto:sales@boostflowturbos.com?subject=Turbo%20Enquiry">Ask for details</a>
-                </Button>
               </div>
             </div>
           </div>
@@ -245,10 +227,10 @@ function Index() {
               Turbocharger parts & complete units
             </p>
             <h1 className="mt-3 max-w-4xl text-4xl font-extrabold uppercase leading-none text-foreground sm:text-5xl lg:text-[4.25rem]">
-              Reliable turbo products made easy for customers to understand.
+              Quality turbo parts, straight to you.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-              This website is built like a realistic turbo parts storefront: simple browsing, real product photos, clear explanations, and direct contact for customers who need the correct turbocharger for their engine or vehicle.
+              From Landcruiser cartridges to complete Ford Ranger and 1KD units, see exactly what's in stock, confirm fitment with us directly, get a fair price, and get your vehicle back on the road with confidence. simple browsing, real product photos, clear explanations, and direct contact for customers who need the correct turbocharger for their engine or vehicle.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -269,7 +251,7 @@ function Index() {
             <article className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)] sm:col-span-2">
               <div className="aspect-[16/9] overflow-hidden bg-secondary">
                 <img
-                  src={turbo1kdFront.url}
+                  src={turbo1kdFront}
                   alt="Featured 1KD complete turbo charger"
                   className="h-full w-full object-cover"
                   loading="eager"
@@ -280,16 +262,13 @@ function Index() {
                   Featured product
                 </p>
                 <h2 className="mt-2 text-2xl font-bold text-foreground">1KD Complete Turbo Charger</h2>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  One of the most visually complete units on the page, shown clearly so customers can inspect the compressor side before they enquire.
-                </p>
-              </div>
+                          </div>
             </article>
 
             <article className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)]">
               <div className="aspect-[4/4.3] overflow-hidden bg-secondary">
                 <img
-                  src={ct26LandcruiserCartridge.url}
+                  src={ ct26LandcruiserCartridge }
                   alt="CT26 Landcruiser cartridge close view"
                   className="h-full w-full object-cover"
                   loading="lazy"
@@ -304,7 +283,7 @@ function Index() {
             <article className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)]">
               <div className="aspect-[4/4.3] overflow-hidden bg-secondary">
                 <img
-                  src={fordRanger22CompleteTurbo.url}
+                  src={fordRanger22CompleteTurbo}
                   alt="Ford Ranger 2.2 complete turbo charger side view"
                   className="h-full w-full object-cover"
                   loading="lazy"
@@ -330,9 +309,7 @@ function Index() {
               Shop by product view
             </h2>
           </div>
-          <p className="max-w-xl text-sm leading-6 text-muted-foreground sm:text-right">
-            Customers can browse the photos first, understand whether each listing is a cartridge or a complete turbo, and then contact you for the next step.
-          </p>
+        
         </div>
 
         <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -379,10 +356,11 @@ function Index() {
           <div className="grid gap-5 md:grid-cols-3">
             {whyBuyHere.map((item) => {
               const Icon = item.icon;
+
               return (
                 <article key={item.title} className="rounded-md border border-border bg-background p-5 shadow-[var(--shadow-soft)]">
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-accent text-foreground">
-                    <Icon className="size-5" />
+                    {Icon ? <Icon className="size-5" /> : null}
                   </div>
                   <h2 className="mt-4 text-xl font-bold text-foreground">{item.title}</h2>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
@@ -400,9 +378,7 @@ function Index() {
             <h2 className="mt-3 text-4xl font-extrabold uppercase text-foreground sm:text-5xl">
               Simple turbo information for everyday buyers.
             </h2>
-            <p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">
-              Many customers know they need a turbo part, but they may not know whether they need a cartridge or a complete turbocharger. This section helps make the website feel realistic, useful and trustworthy.
-            </p>
+            
           </div>
 
           <div className="grid gap-4">
@@ -429,11 +405,9 @@ function Index() {
             <div className="space-y-4">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">Turbo gallery</p>
               <h2 className="text-4xl font-extrabold uppercase text-foreground sm:text-5xl">
-                Multiple angles make the site easier for customers to trust.
+                1KD Complete Turbo Charger
               </h2>
-              <p className="max-w-xl text-base leading-7 text-muted-foreground">
-                Showing different product angles helps buyers understand the housing, actuator, wheel side and overall build quality before they send an enquiry.
-              </p>
+             
               <div className="flex flex-wrap gap-3">
                 <div className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-3 text-sm font-medium text-foreground">
                   <Gauge className="size-4 text-primary" />
@@ -449,7 +423,7 @@ function Index() {
             <div className="grid gap-5 md:grid-cols-2">
               <figure className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)]">
                 <img
-                  src={turbo1kdSide.url}
+                  src={turbo1kdSide}
                   alt="Side angle of 1KD complete turbo charger"
                   className="aspect-[4/5] h-full w-full object-cover"
                   loading="lazy"
@@ -457,7 +431,7 @@ function Index() {
               </figure>
               <figure className="overflow-hidden rounded-md border border-border bg-card shadow-[var(--shadow-soft)]">
                 <img
-                  src={turbo22Complete5Speed.url}
+                  src={turbo22Complete5Speed }
                   alt="2.2 turbocharger complete 5 speed front angle"
                   className="aspect-[4/5] h-full w-full object-cover"
                   loading="lazy"
@@ -476,13 +450,10 @@ function Index() {
               <h2 className="mt-3 text-4xl font-extrabold uppercase text-foreground sm:text-5xl">
                 Need price, stock or fitment help?
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
-                Because this is a contact-first turbo website, customers can simply choose the product they want and then reach out for the final details before buying.
-              </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild size="lg" variant="hero">
-                  <a href="mailto:sales@boostflowturbos.com?subject=Turbo%20Price%20Request">
+                  <a href="mailto:equalplansuplies.com?subject=Turbo%20Price%20Request">
                     Email for pricing
                   </a>
                 </Button>
@@ -493,15 +464,17 @@ function Index() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <a href="mailto:sales@boostflowturbos.com" className="rounded-md border border-border bg-background p-5 transition-colors hover:bg-accent">
+              <a href="mailto:equalplansuplies.com" className="rounded-md border border-border bg-background p-5 transition-colors hover:bg-accent">
                 <Mail className="size-5 text-primary" />
                 <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Email</p>
-                <p className="mt-2 text-base font-semibold text-foreground">sales@boostflowturbos.com</p>
+                <p className="mt-2 text-base font-semibold text-foreground">equalplansuplies.com</p>
               </a>
               <a href="tel:+000123456789" className="rounded-md border border-border bg-background p-5 transition-colors hover:bg-accent">
                 <Phone className="size-5 text-primary" />
                 <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Phone</p>
-                <p className="mt-2 text-base font-semibold text-foreground">+000 123 456 789</p>
+                <p className="mt-2 text-base font-semibold text-foreground">0721748787
+                  
+                </p>
               </a>
               <a href="https://instagram.com/boostflowturbos" className="rounded-md border border-border bg-background p-5 transition-colors hover:bg-accent">
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Instagram</p>
